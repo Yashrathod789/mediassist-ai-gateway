@@ -121,21 +121,8 @@ export function LoginForm() {
         </Link>
       </div>
 
-      {status && (
-        <motion.p
-          initial={{ opacity: 0, y: -4 }}
-          animate={{ opacity: 1, y: 0 }}
-          role="status"
-          aria-live="polite"
-          className={
-            status.type === "success"
-              ? "rounded-md bg-accent px-3 py-2 text-sm text-accent-foreground"
-              : "rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive"
-          }
-        >
-          {status.message}
-        </motion.p>
-      )}
+      <FormStatus status={status} />
+
 
       <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
         {isSubmitting ? (
