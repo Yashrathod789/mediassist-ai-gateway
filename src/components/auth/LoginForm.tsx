@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Loader2, Mail } from "lucide-react";
-import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { PasswordInput } from "./PasswordInput";
+import { FieldError } from "./FieldError";
+import { FormStatus, type Status } from "./FormStatus";
 import { login } from "@/lib/auth-api";
 
 type Errors = { email?: string; password?: string };
+
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -26,7 +28,7 @@ export function LoginForm() {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
-  const [status, setStatus] = useState<{ type: "success" | "error"; message: string } | null>(null);
+  const [status, setStatus] = useState<Status | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -74,11 +76,8 @@ export function LoginForm() {
             aria-describedby={errors.email ? "email-error" : undefined}
           />
         </div>
-        {errors.email && (
-          <p id="email-error" role="alert" className="text-sm text-destructive">
-            {errors.email}
-          </p>
-        )}
+        <FieldError id="email-error" message={errors.email} />
+
       </div>
 
       <div className="space-y-2">
@@ -93,11 +92,8 @@ export function LoginForm() {
           aria-invalid={Boolean(errors.password)}
           aria-describedby={errors.password ? "password-error" : undefined}
         />
-        {errors.password && (
-          <p id="password-error" role="alert" className="text-sm text-destructive">
-            {errors.password}
-          </p>
-        )}
+        <FieldError id="password-error" message={errors.password} />
+
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -119,21 +115,8 @@ export function LoginForm() {
         </Link>
       </div>
 
-      {status && (
-        <motion.p
-          initial={{ opacity: 0, y: -4 }}
-          animate={{ opacity: 1, y: 0 }}
-          role="status"
-          aria-live="polite"
-          className={
-            status.type === "success"
-              ? "rounded-md bg-accent px-3 py-2 text-sm text-accent-foreground"
-              : "rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive"
-          }
-        >
-          {status.message}
-        </motion.p>
-      )}
+      <FormStatus status={status} />
+
 
       <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
         {isSubmitting ? (
