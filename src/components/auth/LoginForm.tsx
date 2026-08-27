@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { Loader2, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,6 +24,7 @@ function validate(email: string, password: string): Errors {
 }
 
 export function LoginForm() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -44,6 +45,7 @@ export function LoginForm() {
     try {
       const result = await login({ email: email.trim(), password, rememberMe });
       setStatus({ type: "success", message: `Welcome back, ${result.user.name}. Signing you in…` });
+      navigate({ to: "/dashboard" });
     } catch (error) {
       setStatus({
         type: "error",
