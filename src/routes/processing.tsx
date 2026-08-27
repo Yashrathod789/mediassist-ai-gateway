@@ -59,7 +59,6 @@ function ProcessingPage() {
           </CardContent>
         </Card>
       </motion.div>
-    </motion.div>
     </DashboardLayout>
   );
 }
