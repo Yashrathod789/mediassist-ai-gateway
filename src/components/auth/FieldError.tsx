@@ -1,5 +1,5 @@
 /** Inline validation message for a form field. */
-export function FieldError({ id, message }: { id: string; message?: string }) {
+export function FieldError({ id, message }: { id: string; message?: string | undefined }) {
   if (!message) return null;
 
   return (
