@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Loader2, Mail } from "lucide-react";
-import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { PasswordInput } from "./PasswordInput";
+import { FieldError } from "./FieldError";
+import { FormStatus, type Status } from "./FormStatus";
 import { login } from "@/lib/auth-api";
 
 type Errors = { email?: string; password?: string };
+
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
