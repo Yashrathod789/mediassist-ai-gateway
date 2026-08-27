@@ -28,7 +28,7 @@ export function LoginForm() {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
-  const [status, setStatus] = useState<{ type: "success" | "error"; message: string } | null>(null);
+  const [status, setStatus] = useState<Status | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -76,11 +76,8 @@ export function LoginForm() {
             aria-describedby={errors.email ? "email-error" : undefined}
           />
         </div>
-        {errors.email && (
-          <p id="email-error" role="alert" className="text-sm text-destructive">
-            {errors.email}
-          </p>
-        )}
+        <FieldError id="email-error" message={errors.email} />
+
       </div>
 
       <div className="space-y-2">
@@ -95,11 +92,8 @@ export function LoginForm() {
           aria-invalid={Boolean(errors.password)}
           aria-describedby={errors.password ? "password-error" : undefined}
         />
-        {errors.password && (
-          <p id="password-error" role="alert" className="text-sm text-destructive">
-            {errors.password}
-          </p>
-        )}
+        <FieldError id="password-error" message={errors.password} />
+
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-3">
