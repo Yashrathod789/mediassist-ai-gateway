@@ -17,6 +17,7 @@ import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as QuestionsRouteImport } from './routes/questions'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as SummaryRouteImport } from './routes/summary'
 import { Route as UploadRouteImport } from './routes/upload'
 
 const IndexRoute = IndexRouteImport.update({
@@ -59,6 +60,11 @@ const ReportsRoute = ReportsRouteImport.update({
   path: '/reports',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SummaryRoute = SummaryRouteImport.update({
+  id: '/summary',
+  path: '/summary',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UploadRoute = UploadRouteImport.update({
   id: '/upload',
   path: '/upload',
@@ -74,6 +80,7 @@ export interface FileRoutesByFullPath {
   '/questions': typeof QuestionsRoute
   '/register': typeof RegisterRoute
   '/reports': typeof ReportsRoute
+  '/summary': typeof SummaryRoute
   '/upload': typeof UploadRoute
 }
 export interface FileRoutesByTo {
@@ -85,6 +92,7 @@ export interface FileRoutesByTo {
   '/questions': typeof QuestionsRoute
   '/register': typeof RegisterRoute
   '/reports': typeof ReportsRoute
+  '/summary': typeof SummaryRoute
   '/upload': typeof UploadRoute
 }
 export interface FileRoutesById {
@@ -97,6 +105,7 @@ export interface FileRoutesById {
   '/questions': typeof QuestionsRoute
   '/register': typeof RegisterRoute
   '/reports': typeof ReportsRoute
+  '/summary': typeof SummaryRoute
   '/upload': typeof UploadRoute
 }
 export interface FileRouteTypes {
@@ -110,6 +119,7 @@ export interface FileRouteTypes {
     | '/questions'
     | '/register'
     | '/reports'
+    | '/summary'
     | '/upload'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -121,6 +131,7 @@ export interface FileRouteTypes {
     | '/questions'
     | '/register'
     | '/reports'
+    | '/summary'
     | '/upload'
   id:
     | '__root__'
@@ -132,6 +143,7 @@ export interface FileRouteTypes {
     | '/questions'
     | '/register'
     | '/reports'
+    | '/summary'
     | '/upload'
   fileRoutesById: FileRoutesById
 }
@@ -144,6 +156,7 @@ export interface RootRouteChildren {
   QuestionsRoute: typeof QuestionsRoute
   RegisterRoute: typeof RegisterRoute
   ReportsRoute: typeof ReportsRoute
+  SummaryRoute: typeof SummaryRoute
   UploadRoute: typeof UploadRoute
 }
 
@@ -205,6 +218,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReportsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/summary': {
+      id: '/summary'
+      path: '/summary'
+      fullPath: '/summary'
+      preLoaderRoute: typeof SummaryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/upload': {
       id: '/upload'
       path: '/upload'
@@ -224,6 +244,7 @@ const rootRouteChildren: RootRouteChildren = {
   QuestionsRoute: QuestionsRoute,
   RegisterRoute: RegisterRoute,
   ReportsRoute: ReportsRoute,
+  SummaryRoute: SummaryRoute,
   UploadRoute: UploadRoute,
 }
 export const routeTree = rootRouteImport
