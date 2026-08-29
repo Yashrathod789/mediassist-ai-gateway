@@ -14,7 +14,8 @@ export const Route = createFileRoute("/upload")({
       { property: "og:title", content: "Upload Medical Report — MediAssist AI" },
       {
         property: "og:description",
-        content: "Add a PDF, DOCX, TXT or image report for MediAssist AI summarization.",
+        content:
+          "Upload a medical report and extract its text with simulated OCR before continuing to AI analysis.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
