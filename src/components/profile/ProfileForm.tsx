@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Loader2, Mail, Phone, Building2, Stethoscope, User } from "lucide-react";
+import { Loader as Loader2, Mail, Phone, Building2, Stethoscope, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
