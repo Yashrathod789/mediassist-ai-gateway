@@ -1,17 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import {
-  Bell,
-  FileText,
-  HeartPulse,
-  LayoutDashboard,
-  LogOut,
-  Menu,
-  MessageCircleQuestion,
-  Upload,
-  User,
-} from "lucide-react";
+import { Bell, FileText, HeartPulse, LayoutDashboard, LogOut, Menu, MessageCircleQuestionMark as MessageCircleQuestion, Upload, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import {
@@ -29,6 +19,7 @@ const NAV_ITEMS = [
   { label: "Upload Report", to: "/upload", icon: Upload },
   { label: "Report History", to: "/reports", icon: FileText },
   { label: "Ask Questions", to: "/questions", icon: MessageCircleQuestion },
+  { label: "Notifications", to: "/notifications", icon: Bell },
   { label: "Profile", to: "/profile", icon: User },
 ] as const;
 
@@ -120,7 +111,13 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           </div>
 
           <div className="flex shrink-0 items-center gap-1 sm:gap-2">
-            <Button variant="ghost" size="icon" className="relative" aria-label="Notifications">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="relative"
+              aria-label="Notifications"
+              onClick={() => navigate({ to: "/notifications" })}
+            >
               <Bell className="h-5 w-5" />
               <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-primary" />
             </Button>
